@@ -41,39 +41,40 @@
             this.clearLogButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.lapsCheckBox = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // hostnameTextBox
             // 
-            this.hostnameTextBox.Location = new System.Drawing.Point(98, 33);
+            this.hostnameTextBox.Location = new System.Drawing.Point(98, 42);
             this.hostnameTextBox.Name = "hostnameTextBox";
             this.hostnameTextBox.Size = new System.Drawing.Size(100, 20);
             this.hostnameTextBox.TabIndex = 0;
             // 
             // usernameTextBox
             // 
-            this.usernameTextBox.Location = new System.Drawing.Point(98, 59);
+            this.usernameTextBox.Location = new System.Drawing.Point(98, 68);
             this.usernameTextBox.Name = "usernameTextBox";
             this.usernameTextBox.Size = new System.Drawing.Size(100, 20);
             this.usernameTextBox.TabIndex = 1;
             // 
             // passwordTextBox
             // 
-            this.passwordTextBox.Location = new System.Drawing.Point(98, 85);
+            this.passwordTextBox.Location = new System.Drawing.Point(98, 94);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(100, 20);
             this.passwordTextBox.TabIndex = 2;
             // 
             // commandTextBox
             // 
-            this.commandTextBox.Location = new System.Drawing.Point(98, 130);
+            this.commandTextBox.Location = new System.Drawing.Point(98, 139);
             this.commandTextBox.Name = "commandTextBox";
             this.commandTextBox.Size = new System.Drawing.Size(399, 20);
             this.commandTextBox.TabIndex = 3;
             // 
             // executeButton
             // 
-            this.executeButton.Location = new System.Drawing.Point(98, 200);
+            this.executeButton.Location = new System.Drawing.Point(98, 209);
             this.executeButton.Name = "executeButton";
             this.executeButton.Size = new System.Drawing.Size(100, 47);
             this.executeButton.TabIndex = 4;
@@ -84,7 +85,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(31, 36);
+            this.label1.Location = new System.Drawing.Point(31, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(61, 13);
             this.label1.TabIndex = 7;
@@ -93,7 +94,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(31, 62);
+            this.label2.Location = new System.Drawing.Point(31, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(61, 13);
             this.label2.TabIndex = 8;
@@ -102,7 +103,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(31, 88);
+            this.label3.Location = new System.Drawing.Point(31, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(59, 13);
             this.label3.TabIndex = 9;
@@ -110,7 +111,7 @@
             // 
             // logTextBox
             // 
-            this.logTextBox.Location = new System.Drawing.Point(34, 253);
+            this.logTextBox.Location = new System.Drawing.Point(34, 262);
             this.logTextBox.Multiline = true;
             this.logTextBox.Name = "logTextBox";
             this.logTextBox.ReadOnly = true;
@@ -120,7 +121,7 @@
             // 
             // clearLogButton
             // 
-            this.clearLogButton.Location = new System.Drawing.Point(422, 395);
+            this.clearLogButton.Location = new System.Drawing.Point(422, 404);
             this.clearLogButton.Name = "clearLogButton";
             this.clearLogButton.Size = new System.Drawing.Size(75, 23);
             this.clearLogButton.TabIndex = 11;
@@ -131,7 +132,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(31, 133);
+            this.label4.Location = new System.Drawing.Point(31, 142);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(60, 13);
             this.label4.TabIndex = 12;
@@ -140,18 +141,29 @@
             // lapsCheckBox
             // 
             this.lapsCheckBox.AutoSize = true;
-            this.lapsCheckBox.Location = new System.Drawing.Point(98, 107);
+            this.lapsCheckBox.Location = new System.Drawing.Point(98, 116);
             this.lapsCheckBox.Name = "lapsCheckBox";
             this.lapsCheckBox.Size = new System.Drawing.Size(53, 17);
             this.lapsCheckBox.TabIndex = 13;
             this.lapsCheckBox.Text = "LAPS";
             this.lapsCheckBox.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Marlett", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.label5.Location = new System.Drawing.Point(156, -10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(248, 40);
+            this.label5.TabIndex = 14;
+            this.label5.Text = "RUN COMMAND";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 443);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.lapsCheckBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.clearLogButton);
@@ -189,6 +201,7 @@
         private System.Windows.Forms.Button clearLogButton;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox lapsCheckBox;
+        private System.Windows.Forms.Label label5;
     }
 }
 
