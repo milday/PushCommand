@@ -1,0 +1,44 @@
+name: Create Release New
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'  # Trigger on tags that follow semantic versioning, e.g., v1.0.0
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Restore dependencies
+      run: dotnet restore PushCommand.sln
+
+    - name: Build
+      run: msbuild PushCommand.sln /p:Configuration=Release
+
+    - name: List build directory
+      run: dir /s
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          **/*.zip
+          **/*.msix
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
