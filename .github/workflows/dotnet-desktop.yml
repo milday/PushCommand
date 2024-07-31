@@ -1,57 +1,41 @@
-name: .NET Core Desktop
+name: Create Release
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    tags:
+      - 'v*.*.*'  # Trigger on tags that follow semantic versioning, e.g., v1.0.0
 
 jobs:
-
-  build:
-
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-
+  release:
     runs-on: windows-latest
 
-    env:
-      Solution_Name: PushCommand.sln
-      # Test_Project_Path is no longer needed
-      # Test_Project_Path: PushCommand.Tests/PushCommand.Tests.csproj
-
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
 
-    - name: Install .NET Core
+    - name: Set up .NET Core
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
 
-    - name: Setup MSBuild.exe
+    - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Restore the application
-      run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
+    - name: Restore dependencies
+      run: dotnet restore PushCommand.sln
+
+    - name: Build
+      run: msbuild PushCommand.sln /p:Configuration=Release
+
+    - name: Create Release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          **/*.zip
+          **/*.msix
+        draft: false
+        prerelease: false
       env:
-        Configuration: ${{ matrix.configuration }}
-
-    # Remove packaging steps if not needed
-    # - name: Create the app package
-    #   run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle
-    #   env:
-    #     Appx_Bundle: Always
-    #     Appx_Bundle_Platforms: x86|x64
-    #     Appx_Package_Build_Mode: StoreUpload
-    #     Configuration: ${{ matrix.configuration }}
-
-    # Remove artifact upload if packaging is removed
-    # - name: Upload build artifacts
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: MSIX Package
-    #     path: ${{ env.Wap_Project_Directory }}\AppPackages
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
