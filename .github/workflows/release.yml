@@ -1,41 +1,41 @@
-name: Build and Release
+name: Create Release
 
 on:
   push:
     tags:
-      - 'v*.*.*'  # Trigger the workflow on version tags (e.g., v1.0.0)
+      - 'v*.*.*'  # Trigger on tags that follow semantic versioning, e.g., v1.0.0
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  release:
+    runs-on: windows-latest
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
+      uses: actions/checkout@v4
       with:
-        dotnet-version: '6.x'  # Update to your .NET version
+        fetch-depth: 0
+
+    - name: Set up .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v2
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore PushCommand.sln
 
     - name: Build
-      run: dotnet build --configuration Release
-
-    - name: Publish
-      run: dotnet publish --configuration Release --output ./output
+      run: msbuild PushCommand.sln /p:Configuration=Release
 
     - name: Create Release
-      uses: softprops/action-gh-release@v1
+      uses: ghcr.io/softprops/action-gh-release@v1
       with:
-        files: ./output/**  # Include all files from the output directory
+        files: |
+          **/*.zip
+          **/*.msix
+        draft: false
+        prerelease: false
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub token to create the release
-
-    - name: Upload Build Artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        name: build-output
-        path: ./output
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
