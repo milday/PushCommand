@@ -28,7 +28,7 @@ jobs:
       run: nuget restore PushCommand.sln
 
     - name: Build
-      run: msbuild PushCommand.sln /p:Configuration=Release
+      run: msbuild PushCommand.sln /p:Configuration=Release /p:SignManifests=false
 
     - name: List build directory
       run: dir /s
