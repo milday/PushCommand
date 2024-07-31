@@ -25,7 +25,7 @@ jobs:
       uses: microsoft/setup-msbuild@v2
 
     - name: Restore NuGet packages
-      run: dotnet restore PushCommand.sln
+      run: nuget restore PushCommand.sln
 
     - name: Build
       run: msbuild PushCommand.sln /p:Configuration=Release
