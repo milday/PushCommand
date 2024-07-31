@@ -30,7 +30,7 @@ jobs:
       run: msbuild PushCommand.sln /p:Configuration=Release
 
     - name: Create Release
-      uses: ghcr.io/softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v1
       with:
         files: |
           **/*.zip
