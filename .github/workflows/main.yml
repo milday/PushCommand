@@ -24,7 +24,7 @@ jobs:
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v2
 
-    - name: Restore dependencies
+    - name: Restore NuGet packages
       run: dotnet restore PushCommand.sln
 
     - name: Build
